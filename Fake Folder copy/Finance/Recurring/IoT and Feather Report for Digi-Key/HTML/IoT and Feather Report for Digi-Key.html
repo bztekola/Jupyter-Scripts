@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<body>
+
+    <h1> IoT and Feather Report for Digi-Key<br>{{ year_and_month }} </h1>
+    <h6> Created {{ now }} </h6>
+
+<!-- PURPOSE -->
+
+	<h2> Purpose </h2>
+	<p>This brief report shows the year over year changes in the quantity sold and revenue generated from the sale of Adafruit Feather and IoT parts to Digi-Key. If you’d like to see the specific parts that are considered in this report, check out this <a href = 'https://drive.google.com/open?id=1MTl4rTIbUt3itopxdvXXtYgy9LE3N4-1'>link</a>.</p>
+
+<!-- SUMMARY -->		
+
+	<h2> Summary </h2>
+	<p> {{ summary }} </p>
+
+<!-- QTY SOLD -->	
+
+	<h2> Qty Bought </h2>
+	{{ qty_bought_table }}
+	<img class = 'image' src = 'file:///Users/jarad/Fake Folder/Finance/Recurring/IoT and Feather Report for Digi-Key/Images/Qty Bought.png'>
+
+<!-- REVENUE -->	
+
+	<h2 style = 'page-break-before: always'> Revenue </h2>
+	{{ revenue_table }}
+	<img class = 'image' src = 'file:///Users/jarad/Fake Folder/Finance/Recurring/IoT and Feather Report for Digi-Key/Images/Revenue.png'>	
+
+<!-- AVG PRICE -->	
+
+	<h2> Avg Price </h2>
+	{{ avg_price_table }}
+	<img class = 'image' src = 'file:///Users/jarad/Fake Folder/Finance/Recurring/IoT and Feather Report for Digi-Key/Images/Avg Price.png'>	
+
+<!-- END -->
+	
+	<p class = 'footer'> End of report </p>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<body>
+
+    <h1> Monthly Shipping Audit<br>{{ year_and_month }} </h1>
+    <h6> Created {{ now }} </h6>
+
+<!-- PURPOSE -->
+	
+	<h2> Purpose </h2>
+	<p> The purpose of this monthly shipping audit is to assess our shipping activities with respect to UPS, DHL, and USPS. We look at outbound charges, as well as the cost of free shipping. </p>
+
+<!-- NOTES ON THE REPORT -->
+
+	<h2> Notes on the Report </h2>
+	<p> For the entire report, unless otherwise stated, both AdaBox subscriptions and Free Shipping are excluded. </p>
+
+<!-- OVERALL -->
+
+	<h2> Overall </h2>
+	<p> {{ overall_write }} </p>
+	<img class = 'image' src = 'file:///Users/jarad/Fake Folder/Shipping/Recurring/Shipping Audit/Images/Monthly/Overall Shipping Revenue and Order Counts.png'>
+
+<!-- UPS -->
+
+	<h2 style = 'page-break-before: always' > UPS </h2>
+	<p> {{ ups_write }} </p>
+	<img class = 'image' src = 'file:///Users/jarad/Fake Folder/Shipping/Recurring/Shipping Audit/Images/Monthly/UPS Revenue and Order Counts.png'>
+
+<!-- DHL -->
+
+	<h2> DHL </h2>
+	<p> {{ dhl_write }} </p>
+	<img class = 'image' src = 'file:///Users/jarad/Fake Folder/Shipping/Recurring/Shipping Audit/Images/Monthly/DHL Revenue and Order Counts.png'>
+
+<!-- USPS -->
+
+	<h2 style = 'page-break-before: always'> USPS </h2>
+	<p> {{ usps_write }} </p>
+	<img class = 'image' src = 'file:///Users/jarad/Fake Folder/Shipping/Recurring/Shipping Audit/Images/Monthly/USPS Revenue and Order Counts.png'>		
+
+<!-- FREE SHIPPING -->
+
+	<h2> Free Shipping </h2>
+	<p class = 'subheader'> *This section excludes AdaBox. </p>
+	<p> {{ free_01 }} </p>
+	<p> {{ free_02 }} </p>
+	<p> {{ free_03 }} </p>
+	<p> {{ free_04 }} </p>
+	<img class = 'image' src = 'file:///Users/jarad/Fake Folder/Shipping/Recurring/Shipping Audit/Images/Monthly/Cost of Free Shipping.png'>	
+
+<!-- LOSSES -->	
+
+	<h2> Shipping Profit Losses </h2>
+	<p class = 'subheader'> *This section excludes AdaBox. </p>
+	<p> {{ loss_write }} </p>
+
+<!-- ADABOX -->	
+
+	<h2> AdaBox </h2>
+	<p> {{ adabox_write }} </p>
+
+<!-- END -->
+	
+	<p class = 'footer'> End of report </p>
+
+</body>
+</html>

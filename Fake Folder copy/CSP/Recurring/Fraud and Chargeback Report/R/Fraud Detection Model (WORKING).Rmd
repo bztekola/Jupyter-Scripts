@@ -1,0 +1,241 @@
+#==================================================
+# REMINDER:
+# In python, make sure states and countries are full words and not abbreviations
+#==================================================
+
+# Confusion Matrix
+# https://www.rdocumentation.org/packages/caret/versions/6.0-81/topics/confusionMatrix
+
+# Fraud Detection by Using Logistic Regression
+# https://www.kaggle.com/xiao0889/fraud-detection-by-using-logistic-regression
+
+# Credit Card Fraud Detection / Imbalanced data modeling - Part I: Logistic Regression
+# Python
+# http://songhuiming.github.io/pages/2018/05/05/credit-card-fraud-detection-imbalanced-data-modeling-part-i-logistic-regression/#Modeling-Part-I:-Logistic-Regression-method
+
+# Exploring and Predicting Credit Card Fraud
+# https://www.kaggle.com/cristianomartins/analysis-and-classification-of-credit-card-fraud
+# Time the whole thing
+
+# LOGIT REGRESSION | R DATA ANALYSIS EXAMPLES
+# https://stats.idre.ucla.edu/r/dae/logit-regression/
+
+# CredicCard Fraud Detections using Various Classification Alogithams
+# https://rpubs.com/singhi08/Credit_card_fraud_detection
+
+# Libraries
+```{r}
+options(repos = 'http://cran.rstudio.com/')
+
+library(ROSE)
+library(readxl)
+library(plyr)
+library(tidyverse)
+library(GGally)
+library(stringr)
+library(rattle)
+library(pROC)
+library(ROCR)
+library(iterators)
+library(rattle)
+library(kernlab)
+
+library(randomForest)   #For applying Random Forest
+library(e1071)          #For SVM
+library(rpart)          #For tree models
+library(rpart.plot)     #for plotting tree
+library(caTools)        #For calculating AUC
+library(readr)          #Fore reading data
+library(caret)     
+```
+
+# Get data
+```{r}
+csv_path <- '/Users/jarad/Fake Folder/CSP/Recurring/Fraud and Chargeback Report/CSVs/Fraud Detection Data for R.xlsx'
+super_main <- read_excel(csv_path)
+colnames(super_main) <- str_replace_all(colnames(super_main), ' ', '_')
+```
+
+# Find and fill nulls
+```{r}
+cols <- colnames(super_main)
+
+for (c in cols){
+  if (class(super_main[[c]]) == 'character'){
+    super_main[[c]][is.na(super_main[[c]])] <- 'none'
+  }
+}
+```
+
+# Fraud vs not-fraud order subtotals
+```{r}
+max <- summary(super_main$order_subtotal)['3rd Qu.']
+
+ggplot(super_main, aes(x = order_subtotal, color = fraud)) + 
+  geom_density() +
+  xlim(-25,500) +
+  ggtitle('Density Plot for Order Totals per Fraud Group')
+```
+# Make a copy
+```{r}
+main <- super_main
+```
+
+# Restrict data to most recent three months
+```{r}
+d <- seq(max(super_main$date_purchased), length = 2, by = '-3 months')[-1]
+d <- toString(d)
+three_months_ago <- paste(substring(d, 1, 7), '-01', sep = '')
+
+#main <- subset(main, date_purchased > three_months_ago)
+```
+
+# Drop some columns
+```{r}
+ls <- list('date_purchased',
+           'orders_id',
+           'customers_id',
+           'customers_email_address',
+           'billing_street_address',
+           'billing_state',
+           'billing_country',
+           'billing_postcode',
+           'delivery_street_address',
+           'delivery_state',
+           'delivery_country',
+           'delivery_postcode',
+           'delivery_phone',
+           'ip_address',
+           'orders_status_name',
+           'year_and_month_purchased',
+           'order_subtotal_bins',
+           'email_domain')
+
+main <- main[, -which(colnames(main) %in% ls)]
+```
+
+# CHECK THIS
+# seems like ls is empty and it should not be
+# Change characters to factors
+```{r}
+cols <- colnames(main)
+ls <- list()
+
+i <- 1
+for (c in cols){
+  print(class(main[[c]]))
+  if (class(main[[c]]) == 'character'){
+    ls[i] <- c
+    i <- i+1
+  }
+}
+
+for (c in ls){
+  print(c)
+  main[[c]] <- as.factor(main[[c]])
+}
+```
+
+```{r}
+head(main)
+```
+
+# Standardize order subtotals
+```{r}
+values <- main$order_subtotal
+m <-mean(values)
+s <- sd(values)
+z <- (values - m)/s
+
+# add z score column
+main$order_subtotal_z <- z
+
+# drop old one
+main <- subset(main, select = -c(order_subtotal))
+```
+
+# Check out correlations
+# THINK ABOUT THIS:
+# don't we want some correlations? like, between delivery_state and billing_state?? idk
+```{r}
+#for_cor <- main
+#for_cor[] <- lapply(main, as.integer)
+#cor_table <- cor(for_cor)
+#print(abs(cor_table) > 0.8)
+```
+
+# Check out class imbalance
+```{r}
+summary(main$fraud)
+```
+
+# Over- or under-sample the data to correct for class imbalance
+```{r}
+set.seed(1)
+choice <- 'under'
+
+main2 <- ovun.sample(fraud~.,
+                     data = main,
+                     method = choice,
+                     p = 0.5,
+                     seed = 1)$data
+summary(main2$fraud)
+```
+
+# Split data into train and test sets
+```{r}
+ix <- sample(nrow(main2), round(nrow(main2) * 0.80), replace = FALSE)
+
+train <- main2[ix,] 
+test <- main2[-ix,]
+```
+
+```{r}
+params <- fraud ~ order_subtotal_z + matching_postcodes + ip_mismatch
+```
+
+#==================================================
+# Logistic Regression
+#==================================================
+```{r}
+glm.model <- glm(params, data = train, family = "binomial")
+glm.prob <- predict(glm.model, newdata = test, type = "response")
+
+glm.pred <- ifelse(glm.prob > 0.5, 1, 0)
+table(test$fraud, glm.pred)
+```
+
+#==================================================
+# Decision Tree
+#==================================================
+```{r}
+tree.model <- rpart(params, data = train, method = "class", minbucket = 20)
+prp(tree.model) 
+```
+```{r}
+tree.predict <- predict(tree.model, test, type = "class")
+confusionMatrix(test$fraud, tree.predict)
+```
+
+#==================================================
+# SVM Model
+#==================================================
+```{r}
+svm.model <- svm(params, data = train[1:10000,], kernel = "radial", cost = 1, gamma = 0.1)
+svm.predict <- predict(svm.model, test)
+confusionMatrix(test$fraud, svm.predict)
+```
+
+#==================================================
+# Random Forest
+#==================================================
+```{r}
+set.seed(1)
+rf.model <- randomForest(params, data = train[1:10000,],ntree = 2000, nodesize = 20)
+rf.predict <- predict(rf.model, newdata = test)
+confusionMatrix(test$fraud, rf.predict)
+```
+```{r}
+varImpPlot(rf.model)
+```
+

@@ -1,0 +1,5 @@
+Similar search keywords are assigned a "top word", so "Feather", "Feather M0", "Feather M4", etc. fall under the top word of "Feather", while "Raspberry Pi", "Raspberry", "Rasberry", etc. fall under "Raspberry Pi", and so on.
+
+To determine these top words, we generate pairs of part category names (from our database) and search keywords, and rate the similarity in each pair using a method called the Jaccard Index. For each search keyword, the part category which forms the highest scoring pair becomes that keywords "top word".
+
+For some examples, see the tables to the right. 

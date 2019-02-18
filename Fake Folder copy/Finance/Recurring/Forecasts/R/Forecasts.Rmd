@@ -1,0 +1,198 @@
+# Forecasts using QB/Pillars Monthly Data
+```{r}
+library(readxl)
+library(forecast)
+library(tidyquant)
+library(timetk)
+library(sweep)
+library(ggplot2)
+library(scales)
+library(openxlsx)
+library(tools)
+library(writexl) #https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf
+
+write_workbook <- 'no'
+read_path <- '/Users/jarad/Fake Folder/Finance/Recurring/Forecasts/CSVs/Input/'
+read_title <- '2018 - 12 - Dec - The Pillars Monthly - for R.xlsx'
+
+write_path <- '/Users/jarad/Fake Folder/Finance/Recurring/Forecasts/CSVs/Output/'
+write_title <- '2019 - 01 - Jan - Forecasts - ARIMA.xlsx'
+```
+```{r}
+paste(read_path, read_title, sep = '')
+```
+
+# Get and structure data
+```{r}
+# get main data from python and structure it
+super_main <- read_excel(paste(read_path, read_title, sep = ''))
+
+year <- as.integer(substring(min(super_main$`year and month`),1,4))
+month <- as.integer(substring(min(super_main$`year and month`),6,7))
+
+main <- super_main[-(1)] # remove date column after creating your ts object
+main <- ts(main, start = c(year, month), frequency = 12)
+
+# create a list of columns to forecast, i.e. expense, income, and profit
+all_cols <- c('income','expense','profit')
+```
+
+```{r}
+tail(main)
+```
+
+# Plot it
+```{r}
+colors <- c('blue','purple','orange')
+
+for (i in 1:length(all_cols)){
+  
+  name <- toTitleCase(all_cols[i])
+  y_data <- main[,i]
+  title <- paste('Time Series Plot for', name)
+
+  plot <- autoplot(y_data) +
+          geom_line(color = colors[i], size = 1) +
+          stat_smooth(color = 'black', fill = 'gray', method = 'loess') +
+          labs(x = 'Year', y = name, title = title) +
+          scale_y_continuous(label = dollar_format())
+  
+  print(plot)
+}
+```
+
+# Define arima_func
+```{r}
+arima_func <- function(t1, forecast_steps){
+  trace <- capture.output({
+    m1 <- auto.arima(t1, trace = TRUE)
+    model <- forecast(m1, h = forecast_steps, level = c(95))
+  })
+con    <- textConnection(trace)
+models <- read.table(con, sep=":")
+model_counter <- length(models[,1]) - 1
+close(con)
+ret <- list('model' = model, 'model counter' = model_counter)
+  return(ret)
+}
+```
+
+# Begin forecasting
+```{r}
+start_time <- Sys.time()
+
+# we want to forecast out to the end of the current quarter plus two more
+month <- as.integer(substring(read_title,8,9)) # get final month of actual data
+
+mod <- month%%3
+if (mod == 0){
+  additional <- 0
+} else if (mod == 1){
+  additional <- 2
+} else {
+  additional <- 1
+}
+
+forecast_periods <- additional + 6 # go six months out plus X to total at least two quarters 
+
+if (write_workbook == 'yes'){
+  wb <- createWorkbook()  
+
+  model_counter <- 0
+  
+  for (i in 1:length(all_cols)){
+    
+    # for each column (expense, revenue, profit) do this:
+    col <- all_cols[i] 
+  
+    # subset data by column, and get train and test sets
+    data <- main[,i]
+    
+    # turn negative values to positive, if applicable
+    minimum <- min(data)
+    if (minimum < 0){
+      adj <- abs(minimum)
+      data <- data + adj
+    } else {
+      adj <- 0
+      } 
+    
+    # create test and training sets
+    n <-  ceiling(length(data) * 0.80)
+    train <- data[1:n]
+    test <- data[(n+1):length(data)]
+    
+    # forecast over unknown future
+    fit_main <- arima_func(data, forecast_periods) # let auto.arima choose the best model
+    model_counter <- fit_main$`model counter` # add to the model counter
+    fit <- fit_main$model
+    
+    # assess the accuracy
+    acc <- as.data.frame(accuracy(fit)) 
+    mape <- acc[['MAPE']][1]
+    mae <- acc[['MAE']][1]
+    rmse <- acc[['RMSE']][1]
+    
+    # make pretty the diagnostics
+    diagnostics <- as.data.frame(cbind(mape, mae, rmse))
+    diagnostics['column'] <- col
+    diagnostics['model_type'] <- fit$method
+    diagnostics['models made'] <- model_counter
+    
+    print(diagnostics)
+    
+    # plot it, but scale y labels to account for any adjustments due to negative numbers
+    ytick_labels <- function(x){
+      num <- dollar(x-floor(adj/1000000)*1000000)
+    }
+    plt <- autoplot(fit) + 
+           labs(x = 'Year', y = toTitleCase(col)) +
+           scale_y_continuous(labels = ytick_labels)
+    
+    # write to excel
+    addWorksheet(wb = wb, sheetName = toTitleCase(col))
+    writeData(wb = wb, sheet = toTitleCase(col), x = diagnostics) # diagnostics table
+    
+    # all data, actual and forecasts
+    df1 <- sw_sweep(fit)
+    
+    # fix column names
+    new_cols <- c('year and month','key','mean','lower','upper')
+    colnames(df1)[1:length(df1)] <- new_cols
+    df1 <- df1[, c('year and month','key','lower','mean','upper')]
+    
+    # if you adjusted because of negative values then adjust back here
+    for (w in c('lower','mean','upper')){
+      df1[[w]] <- df1[[w]] - adj}
+      
+    # create the table of monthly values starting at month which begins the current quarter
+    df2 <- tail(df1, forecast_periods + additional + 3)
+    
+    # write it to excel    
+    writeData(wb = wb, sheet = toTitleCase(col), x = df2, startRow = nrow(diagnostics) + 3) # forecasts and conf int's
+    
+    # now by year and quarter
+    df1['year and quarter'] <- yearqtr(df1$`year and month`)
+    df3 <- aggregate(df1[,c('lower','mean','upper')], by=list(Category=df1$`year and quarter`), FUN=sum)
+    colnames(df3)[1] <- 'year and quarter'
+    df3 <- tail(add_column(df3, key = '', .after = 'year and quarter'), 3)
+    
+    # write to excel
+    writeData(wb = wb, sheet = toTitleCase(col), x = df3, startRow = nrow(diagnostics) + nrow(df2) + 5)
+
+    print(plt) # plot must be showing in order to insert it
+    insertPlot(wb, sheet = toTitleCase(col), startRow = 1, startCol = ncol(diagnostics) + 3, fileType = 'png', width = 10, height = 5, units = 'in')
+  }
+  
+  end_time <- Sys.time()
+  elapsed <- round(time_length(end_time - start_time, unit = 'minute'),2)
+  print(paste('it took',elapsed,'minutes to run',model_counter,'models'))
+  
+  saveWorkbook(wb, paste(write_path, write_title, sep = ''), overwrite = TRUE)  
+}
+```
+
+```{r}
+print('done')
+```
+
