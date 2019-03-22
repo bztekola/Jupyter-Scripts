@@ -160,6 +160,24 @@ def jb_dates(x, fmt):
         
     return ret
 
+def jb_week_ending(dataframe, date_col, day):
+
+    d1 = str(dataframe[date_col].dt.date.min())
+    d2 = str(dataframe[date_col].dt.date.max())
+
+    ls1 = pd.date_range(d1, d2).tolist()
+    ls2 = [x.day_name() for x in ls1]
+    ls1 = [str(x.date()) for x in ls1]
+
+    df = pd.DataFrame({'date':ls1,'day name':ls2}, index = range(len(ls1)))
+
+    df['week ending'] = np.where(df['day name'] == day, df['date'], np.nan)
+    df['week ending'].fillna(method = 'bfill', inplace = True)
+    df.drop('day name', 1, inplace = True)
+    df[date_col] = pd.to_datetime(df[date_col])
+    
+    return df    
+
 def jb_mean(df, fmt):
     m = pd.DataFrame(df.mean())
     m.columns = ['mean']

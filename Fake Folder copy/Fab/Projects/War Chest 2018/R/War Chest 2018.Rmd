@@ -13,7 +13,7 @@ library(stringr)
 # Script settings
 ```{r}
 excel_write <- 'no'
-forecast_steps <- 2
+forecast_steps <- 4
 
 read_path <- '/Users/jarad/Fake\ Folder/Fab/Projects/War\ Chest\ 2018/CSVs/'
 write_path <- '/Users/jarad/Fake\ Folder/Fab/Projects/War\ Chest\ 2018/R/'

@@ -1,0 +1,14 @@
+This summary covers only where hostname = www.adafruit.com, which includes all subsegments like learn, blog, etc.
+
+
+Overall
+"Exits as a % of Unique Searches" is below the typical range, which means there are fewer exits per search.
+
+Event Actions
+Checkouts, Add to Cart, and Purchases are above their typical ranges.
+
+Exits
+Almost half of all exits occur on the product page. All exits are within their typical ranges.
+
+Keyword Searches
+"Number Search", or a search term which is only a number, is the top search method. 

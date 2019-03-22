@@ -32,10 +32,11 @@ p.subheader {
   font-family: Arial;
   font-size: 10px;
   margin-bottom: -5px;
+  text-align: left;
 }
 
 p.footer { 
-  position: relative;     
+  position: relative;
   text-align: center;    
   bottom: 0px; 
   width: 100%;
@@ -93,6 +94,7 @@ div.single_page {
   bottom: 0px;
   margin: auto;
   margin-top: 0px !important;
+  text-align: center;
 }
 
 img.image2 {
@@ -108,11 +110,8 @@ img.summary_image {
   padding: 5px;
 }
 
-/*
-div.single_page {
-  display: block;
-  margin: auto;
-  justify-content: center;
-  align-items: center;  
+div.inner_table {
+  transform: scale(95%,95%);
+  display: inline-table;
+  /*margin-top: 25%;*/
 }
-*/
