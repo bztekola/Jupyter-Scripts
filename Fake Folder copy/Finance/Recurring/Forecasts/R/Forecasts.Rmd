@@ -1,4 +1,4 @@
-# Forecasts using QB/Pillars Monthly Data
+### Forecasts using QB/Pillars Monthly Data
 ```{r}
 library(readxl)
 library(forecast)
@@ -11,18 +11,18 @@ library(openxlsx)
 library(tools)
 library(writexl) #https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf
 
-write_workbook <- 'no'
+write_workbook <- 'yes'
 read_path <- '/Users/jarad/Fake Folder/Finance/Recurring/Forecasts/CSVs/Input/'
-read_title <- '2018 - 12 - Dec - The Pillars Monthly - for R.xlsx'
+read_title <- '2019 - 02 - Feb - The Pillars Monthly - for R.xlsx'
 
 write_path <- '/Users/jarad/Fake Folder/Finance/Recurring/Forecasts/CSVs/Output/'
-write_title <- '2019 - 01 - Jan - Forecasts - ARIMA.xlsx'
+write_title <- '2019 - 03 - Mar - Forecasts - ARIMA.xlsx'
 ```
 ```{r}
 paste(read_path, read_title, sep = '')
 ```
 
-# Get and structure data
+### Get and structure data
 ```{r}
 # get main data from python and structure it
 super_main <- read_excel(paste(read_path, read_title, sep = ''))
@@ -41,7 +41,7 @@ all_cols <- c('income','expense','profit')
 tail(main)
 ```
 
-# Plot it
+### Plot it
 ```{r}
 colors <- c('blue','purple','orange')
 
@@ -61,7 +61,7 @@ for (i in 1:length(all_cols)){
 }
 ```
 
-# Define arima_func
+### Define arima_func
 ```{r}
 arima_func <- function(t1, forecast_steps){
   trace <- capture.output({
@@ -195,4 +195,3 @@ if (write_workbook == 'yes'){
 ```{r}
 print('done')
 ```
-

@@ -69,10 +69,11 @@
 <!-- IN-STOCK -->
 
 	<h2 style = 'margin-bottom: -5px' > In-Stock </h2>
-	<p class = 'subheader' > *Visible in-stock percentage of all currently working skus that have a bom type equal to “pnp”. <br> 
-	†The unique sku count is currently x{{ unique_sku_count }}. To see the skus which are used in this metric, check out the workbook link at the top of this report, and navigate to the worksheet titled "Skus Used For In-Stock Metric". </p>
+	<p class = 'subheader' > *Visible in-stock percentage of all currently working skus that have a bom type equal to “pnp”. </p>
+	<p> The unique sku count is currently x{{ unique_sku_count }}. To see the skus which are used in this metric, check out the workbook link at the top of this report, and navigate to the worksheet titled "Skus Used For In-Stock Metric". </p>
 	<p> {{ in_stock_summary_write }} </p>
 	<img class = image src = 'file:///Users/jarad/Fake Folder/Fab/Recurring/Fab Op Report/Images/In-Stock %.png'>
+	<p> Note that if you compare this metric to the one found in the <a href = 'https://volcano.adafruit.com/volcano/ada_plm.php?/Reports/ZeroStock/Fab'>Zero Stock Report</a>, the two may not match. This is because the Zero Stock Report shows a snapshot while the report shows over time.</p>
 
 <!-- ELAPSED TIMES FOR WORK ORDERS -->		
 	

@@ -13,6 +13,7 @@ import datetime as dt
 import calendar
 import re
 import glob
+import time
 from scipy import stats
 import rpy2.rinterface
 
@@ -196,32 +197,32 @@ def jb_yoy(x):
     return yoy    
 
 def jb_conf(x):
-    m = x.mean()
-    s = x.std()
-    n = len(x)
-
-    if n < 30:
-        alpha = 0.05
-        p = stats.t.ppf(1-alpha/2, n-1)
-    else:
-        p = 1.96
-
-    l = m - p * (s/np.sqrt(n))
-    u = m + p * (s/np.sqrt(n))
-
-    a = pd.DataFrame(l)
-    b = pd.DataFrame(m)
-    c = pd.DataFrame(u)
-    d = pd.DataFrame(s)
-
-    cols = ['lower','mean','upper','stand dev']
-
-    df = pd.concat([a,b,c,d], axis = 1)
-    df.columns = cols
-    df['sample size'] = n
-    df = df.T
     
-    return df
+    return_df = pd.DataFrame()
+    
+    for col in x.columns:
+        m = x[col].mean()
+        s = x[col].std()
+        n = len(x[col].dropna())
+
+        if n < 30:
+            alpha = 0.05
+            p = stats.t.ppf(1-alpha/2, n-1)
+        else:
+            p = 1.96
+
+        l = m - p * (s/np.sqrt(n))
+        u = m + p * (s/np.sqrt(n))
+
+        ls = [l,m,u,s,n]
+        cols = ['lower','mean','upper','stand dev','sample size']
+
+        df = pd.DataFrame(columns = cols, data = [ls])
+        df.index = [col]
+
+        return_df = return_df.append(df, ignore_index = False)
+
+    return return_df.T
 
 #=========================
 # MySQL Creds
