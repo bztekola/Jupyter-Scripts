@@ -1,12 +1,12 @@
 #===== import libraries
 import sys
-sys.path.insert(0,'/Users/jarad/Fake Folder/Python Libraries')
+sys.path.insert(0,'/Users/jarad/Scripts/Fake Folder Copy/Python Libraries')
 
 from jb_libraries import *
 import glob 
 
 #===== get all CSVs
-path = r'/Users/jarad/Fake Folder/Shipping/Recurring/Shipping Audit/DHL Invoices'
+path = r'/Users/jarad/Scripts/Fake Folder Copy/Shipping/Recurring/Shipping Audit/DHL Invoices'
 all_files = glob.glob(path + '/*.csv')
 frame = pd.DataFrame()
 list_ = []
