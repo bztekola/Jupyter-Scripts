@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0,'/Users/jarad/Fake Folder/Python Libraries/')
+sys.path.insert(0,'/Users/jarad/Scripts/Fake Folder Copy/Python Libraries/')
 
 from jb_libraries import *
 
