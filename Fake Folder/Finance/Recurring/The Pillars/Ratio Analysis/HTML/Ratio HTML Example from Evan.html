@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<head>
+    <link rel="stylesheet" href="analysis.css" />
+</head>
+<body>
+ 
+<!-- TITLE PAGE -->
+
+    <div class = 'title_page' >
+        <img class = 'image2' src = 'file:///Users/jarad/Fake Folder/Finance/Recurring/The Pillars/Ratio Analysis/Images/Adafruit Logo.png' >
+        <hr><br>
+        <h1 style = 'text-align: left' > {{ title }} </h1>
+        <h2 > {{ subtitle }} </h2>
+        <br><hr><br>
+        <h6 style = 'page-break-after: always;'> Created {{now_pretty}} </h6>
+    </div>
+
+<!-- SUMMARY PAGE -->
+    
+    <h2> Summary </h2><br><hr>
+
+    <!-- this is where i'm stuck -->
+
+    <div>
+        <div class="flex-container">
+          <div> {{ order_count_table }} </div>
+          <div class="graph"><img class = "flex-image" src = "graph.png" ></div>
+        </div>
+        <div class="flex-container">
+          <div> {{ total_revenue_table }} </div>
+          <div class="graph"><img class = "flex-image" src = "graph.png"  ></div>
+        </div>
+        <div class="flex-container">
+          <div> {{ gross_profit_table }} </div>
+          <div class="graph"><img class = "flex-image" src = "graph.png"  ></div>
+        </div>
+        <div class="flex-container">
+          <div> {{ gross_profit_margin_table }} </div>
+          <div class="graph"><img class = "flex-image" src = "graph.png" ></div>
+        </div>
+    </div>
+
+        
+<!-- END -->
+    
+    <p class = 'footer'> End of report </p>
+
+</body>
+</html>
+
+
+
+
+<!-- this makes it way easier, we could use some tricks with the default -->
+flex-flow: row wrap;
+<!-- but might as well just do it the easy way -->
+
+<!-- this would be the css after the div.title_page -->
+.flex-container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.flex-container > div {
+  flex: 1 1 100px;
+  margin: 5px;
+}
+.flex-container > div.graph{
+  flex: 0 1 500px; 
+  margin-right: auto;
+  /* 
+  this is shorthand for [ flex-grow flex-shrink flex-basis ]
+  So div.graphs will not grow larger than 500px but they can shrink to fit less than 500px
+  */
+
+}
+
+img.flex-image {
+  max-width: 100%;
+
+}

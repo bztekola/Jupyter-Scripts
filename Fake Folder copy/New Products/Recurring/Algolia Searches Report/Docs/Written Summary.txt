@@ -1,3 +1,0 @@
-This summary covers only where hostname = www.adafruit.com, which includes all subsegments like learn, blog, etc.
-
-The number of pageviews is trending upwards but is below normal; the number of sessions with search is normal, but there are fewer exits after searching; the number of checkouts is trending upwards while the number of product views is down and below normal; exiting on the product page accounts for almost half of all exits, while exiting on a learn guide accounts for 10%; the top three search keywords are a number search (7% of total), Raspberry Pi (2%), and Arduino (2%).

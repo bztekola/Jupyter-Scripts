@@ -1,0 +1,11 @@
+EVENT ACTIONS KEY
+
+Add Impression: A product appeared on the page. "Add Impression" won't send again if the product leaves the frame and comes back (scrolling down then back up)
+
+Add to Cart: Something was added to customer cart. It could have been from landing on the added_to_cart_page or by clicking on a button that "adds to cart" without loading a new page.
+
+Checkout: Customer landed on a checkout step (started checkout or advanced a step)
+
+Purchase: The order went through and customer landed on the checkout_success page
+
+View Product: A product page was loaded

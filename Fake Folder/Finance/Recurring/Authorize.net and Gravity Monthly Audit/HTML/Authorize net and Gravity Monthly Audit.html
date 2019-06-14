@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<body>
+
+    <h1> Authorize.net and Gravity Monthly Audit<br>{{ year_and_month }} </h1>
+    <h6> Created {{ now }} </h6>
+
+<!-- PURPOSE -->
+
+	<h2> Purpose </h2>
+	<p> The purpose of this monthly audit is to monitor our credit card activity through Authorize.net, our gateway provider, and Gravity, our credit card processor. We look at revenue, order counts, average order value, and refunds. For reference, the latest Gravity statement can be found <a href = 'https://www.dropbox.com/sh/9pzcsupqtei0ctf/AACCYdQkl2-nf97Ve_-jZcDIa?dl=0'>here</a>.
+ 	</p>
+
+<!-- SUMMARY + FINANCIAL IMPACT -->
+
+	<h2> Summary + Financial Impact </h2>
+	<p> {{ summary }} </p>
+
+<!-- REVENUE -->
+
+	<h2> Revenue </h2>	
+	<p> {{ revenue_write }} </p>
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Finance/Recurring/Authorize.net and Gravity Monthly Audit/Images/Credit Card Revenue.png' >
+
+<!-- ORDER COUNT AND AOV -->
+
+	<h2> Order Count and AOV </h2>
+	<p> {{ order_count_and_aov_write }} </p>
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Finance/Recurring/Authorize.net and Gravity Monthly Audit/Images/Order Count and AOV.png' >	
+
+<!-- FEES -->	
+
+	<h2> Fees </h2>
+	<p> {{ fees_write }} </p>
+
+<!-- APPROVAL PERCENTAGE -->		
+	
+	<h2> Approval Percentage </h2>
+	<p> {{ approval_percentage_write }} </p>
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Finance/Recurring/Authorize.net and Gravity Monthly Audit/Images/Approval % with Average.png' >	
+
+<!-- REFUNDS -->			
+	
+	<h2> Refunds </h2>
+	<p> {{ refunds_write }} </p>
+	<p> The top three refunds of the month are:<br>
+		OID <a href = '{{ refund_link_0 }}' > {{ refund_oid_0 }} </a> for {{ refund_amount_0 }}<br>
+		OID <a href = '{{ refund_link_1 }}' > {{ refund_oid_1 }} </a> for {{ refund_amount_1 }}<br>
+		OID <a href = '{{ refund_link_2 }}' > {{ refund_oid_2 }} </a> for {{ refund_amount_2 }}	
+	</p>
+	<p> Below is a chart showing the amount refunded over time, along with the average amount refunded. </p>
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Finance/Recurring/Authorize.net and Gravity Monthly Audit/Images/Amount Refunded and Avg Refund per Order.png' >
+
+<!-- FRAUD -->
+
+	<h2> Fraud </h2>
+	<p> {{ fraud_write }} </p>
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Finance/Recurring/Authorize.net and Gravity Monthly Audit/Images/Fraud Amount with Average.png' >
+
+<!-- CREDIT CARDS IN CONTEXT -->
+	
+	<h2> Credit Cards in Context </h2>
+	<p> Below is a chart showing all payment types by count for the month of {{ year_and_month }}, where credit cards rank {{ rank }}. </p>
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Finance/Recurring/Authorize.net and Gravity Monthly Audit/Images/Payment Types by Count.png' >	
+
+<!-- END -->
+	
+	<p class = 'footer'> End of report </p>
+
+</body>
+</html>

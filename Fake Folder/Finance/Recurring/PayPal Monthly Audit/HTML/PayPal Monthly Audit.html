@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<body>
+
+    <h1> PayPal Monthly Audit<br>{{ year_and_month }} </h1>
+    <h6> Created {{ now }} </h6>
+
+<!-- PURPOSE -->
+
+	<h2> Purpose </h2>
+	<p> The purpose of this monthly audit is to monitor customer payments made through PayPal. We look at revenue, order counts, average order value, fees, and refunds. </p>
+
+<!-- SUMMARY AND FINANCIAL IMPACT -->
+
+	<h2> Summary + Financial Impact </h2>
+	<p> {{ summary_write }} </p>
+
+<!-- REVENUE AND AOV -->
+
+	<h2> Revenue and AOV </h2>
+	<p> {{ revenue_write }} </p>
+	<p> {{ proportion_write }} </p>
+	<p> {{ aov_write }} </p>
+	<p> See below for PayPal revenue over time</p>
+
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Finance/Recurring/PayPal Monthly Audit/Images/PayPal Revenue.png' >
+
+	<p style = 'page-break-before: always' > See below for the PayPal order count along with the average order value </p>
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Finance/Recurring/PayPal Monthly Audit/Images/PayPal Order Count with Average Order Value.png' >
+
+<!-- FEES -->
+
+	<h2> Fees </h2>	
+	<p> {{ fees_write }} </p>
+
+<!-- REFUNDS -->
+
+	<h2> Refunds </h2>	
+	<p> {{ total_refund_write }} </p>
+	<p> {{ avg_refund_write }} </p>
+	<p> The top three refunds of the month are:<br>
+		OID <a href = '{{ refund_link_0 }}' > {{ refund_oid_0 }} </a> for {{ refund_amount_0 }}<br>
+		OID <a href = '{{ refund_link_1 }}' > {{ refund_oid_1 }} </a> for {{ refund_amount_1 }}<br>
+		OID <a href = '{{ refund_link_2 }}' > {{ refund_oid_2 }} </a> for {{ refund_amount_2 }}	
+	</p>
+	<p> Below is a chart showing the amount refunded over time, along with the average amount refunded. </p>
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Finance/Recurring/PayPal Monthly Audit/Images/PayPal Refund Total and Average Amount Refunded.png' >	
+
+<!-- PAYPAL IN CONTEXT -->
+
+	<h2> PayPal in Context </h2>
+	<p> Below is a chart showing all payment types by count for the month of {{ year_and_month }}, where PayPal ranks {{ rank }}. </p>
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Finance/Recurring/PayPal Monthly Audit/Images/Payment Types by Count.png' >					
+
+<!-- END -->
+	
+	<p class = 'footer'> End of report </p>
+
+</body>
+</html>

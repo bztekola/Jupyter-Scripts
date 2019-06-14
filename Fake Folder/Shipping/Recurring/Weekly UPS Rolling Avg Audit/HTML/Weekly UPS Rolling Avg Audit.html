@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<body>
+	<h1> Weekly UPS Rolling Avg Audit<br>w.e. {{ week_end }} </h1>
+    <h6> Created {{ now }} </h6>
+
+<!-- PURPOSE -->
+
+	<h2> Purpose </h2>
+	<p>This weekly report monitors the UPS gross transportation charge, as well as the average cost per UPS package. The gross transportation charge is a value that determines the level of savings which UPS offers to Adafruit, so any changes in this value will affect the average charge per package.</p>
+
+	<p><a href = 'https://www.dropbox.com/s/uucvsc17z8l30r1/UPS%20Contract%20as%20of%20June%2021%2C%202018.pdf?dl=0'> Here </a> is a link to the latest UPS contract, for reference, and below are our current incentive bands
+	<img class = 'image' src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Shipping/Recurring/Weekly UPS Rolling Avg Audit/Images/UPS incentive bands.png'></p>
+	
+<!-- AVG CHARGE PER PACKAGE -->
+
+	<h2> Avg Charge per UPS Package </h2>
+	<p> {{ domestic_avg_charge_per_package }} <br> {{ international_avg_charge_per_package }} </p>
+
+<!-- CURRENT STATE OF WEEKLY AVERAGE -->
+
+	<h2> Current State of Weekly Average </h2>
+	<p> {{ current_state_table }} </p>
+
+<!-- UPS AND DHL AVG CHARGE FOR INTERNATIONAL  -->
+
+	<h2> UPS and DHL Avg Charge for International </h2>
+	<p> {{ compare }} </p>
+
+<!-- UPS AVG CHARGE OVER TIME CHART -->
+
+	<h2 style = 'page-break-before:always'> UPS Avg Charge Over Time </h2>
+	<img class = image src = 'file:///Users/jarad/Scripts/Fake Folder Copy/Shipping/Recurring/Weekly UPS Rolling Avg Audit/Images/Avg UPS Charge per Region Over Time.png'>
+
+<!-- END -->
+
+	<p class = 'footer'> End of report </p>
+
+</body>
+</html>
