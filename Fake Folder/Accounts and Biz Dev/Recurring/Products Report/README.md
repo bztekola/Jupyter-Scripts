@@ -1,0 +1,1 @@
+This recurring project generates an Excel workbook and PDF report which covers part sales, revenue, AOV, profit, cost, count of orders, etc. It's an all-around products report, and can be run to cover monthly, quarterly, or annual sales.

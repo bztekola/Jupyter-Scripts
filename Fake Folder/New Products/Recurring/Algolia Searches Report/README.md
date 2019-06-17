@@ -1,0 +1,1 @@
+This recurring quarterly, monthly, and weekly project outputs an Excel workbook which contains data on website search terms within www.adafrut.com and Adafruit's Learn section. The raw data is taken from the Google Analytics API and the analysis includes things like overall search stats, event actions, exit pages, and searches by top word and keyword.

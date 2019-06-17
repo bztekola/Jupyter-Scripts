@@ -1,0 +1,1 @@
+This recurring monthly project is an audit which reconciles PayPal customer payment data within the database, as well as between the database and PayPal data taken from their website. Instructions on how to get this data are at the top of the Python script.

@@ -1,6 +1,13 @@
 print('\n== part_cost_data start ==\n')
 
+import os
+tilde = os.path.expanduser('~')
+
+import sys
+sys.path.insert(0, tilde + '/Scripts/Fake Folder/Python Libraries')
+
 from jb_libraries import *
+
 now = str(dt.datetime.now())[:-7]
 
 #=========================

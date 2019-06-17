@@ -1,0 +1,1 @@
+This R script uses historical data from QuickBooks to forecast revenue, expenses, and profit. The data is first structured in Python using the script found in Scipts > Fake Folder > Finance > Recurring > The Pillars > Keynote and Summary > Python > The Pillars Keynote and Summary.ipynb. This means you must run this Python script first before you run this R script.

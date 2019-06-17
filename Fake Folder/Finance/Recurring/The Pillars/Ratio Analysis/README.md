@@ -1,0 +1,1 @@
+This project outputs a PDF report which contains KPIs and financial ratios based on QuickBooks data. The data is first structured in Fake Folder > Finance > Recurring > The Pillars > Keynote and Summary > The Pillars Keynote and Summary.ipynb, so you must run the Keynote script before you run the Ratio script.

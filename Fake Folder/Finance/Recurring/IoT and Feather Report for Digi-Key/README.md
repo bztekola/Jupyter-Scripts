@@ -1,0 +1,1 @@
+This monthly project generates a PDF report which shows the revenue, qty, and average price of the IoT and Feather parts sent to Digi-Key.
