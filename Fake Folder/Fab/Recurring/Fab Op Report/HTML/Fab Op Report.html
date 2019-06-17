@@ -16,7 +16,7 @@
 	<p> {{ summary_fab_op_metric_table }} </p>
 	<p> Keep scrolling for a bird’s-eye-view of these metrics over time. </p>
 
-	<img class = image src = 'file:///Users/jarad/Scripts/Fake Folder/Fab/Recurring/Fab Op Report/Images/Fab Op Metric with Averages.png'>
+	<img class = image src = 'file:///{{ tilde }}/Scripts/Fake Folder/Fab/Recurring/Fab Op Report/Images/Fab Op Metric with Averages.png'>
 
 <!-- WORK ORDER OVERVIEW -->	
 
@@ -44,7 +44,7 @@
 	<h2> Availability </h2>
 	<p class = 'subheader' > *Availability = 50% * (WOs completed / scheduled) + 50% * (WOs completed / active) <br> †Excludes outsourced WOs </p>
 	<p> {{ avail_summary_write }} </p>
-	<img class = image src = 'file:///Users/jarad/Scripts/Fake Folder/Fab/Recurring/Fab Op Report/Images/Availability Metric Over Time.png'>
+	<img class = image src = 'file:///{{ tilde }}/Scripts/Fake Folder/Fab/Recurring/Fab Op Report/Images/Availability Metric Over Time.png'>
 
 <!-- QUALITY -->	
 
@@ -56,7 +56,7 @@
 	<p> {{ quality_machine_yield_write }}
 		Below is a chart showing the Quality Metric alongside Machine Yield.
 	</p>
-	<img class = image src = 'file:///Users/jarad/Scripts/Fake Folder/Fab/Recurring/Fab Op Report/Images/Quality Metric and Machine Yield.png'>
+	<img class = image src = 'file:///{{ tilde }}/Scripts/Fake Folder/Fab/Recurring/Fab Op Report/Images/Quality Metric and Machine Yield.png'>
 
 <!-- REWORK -->		
 
@@ -64,7 +64,7 @@
 	<p class = 'subheader' > *Reworks = Successful Reworks / Total Reworks Attempted </p>
 	<p> {{ rework_summary_write }} </p>
 	<p> To see all reworks for the current week ending, check out the workbook link at the top of this report, and navigate to the "Current Reworks" worksheet. Below we have a chart showing the count of reworks over time along with the Rework Metric. </p>
-	<img class = image src = 'file:///Users/jarad/Scripts/Fake Folder/Fab/Recurring/Fab Op Report/Images/Count of Reworks Attempted along with the Rework Metric.png'>
+	<img class = image src = 'file:///{{ tilde }}/Scripts/Fake Folder/Fab/Recurring/Fab Op Report/Images/Count of Reworks Attempted along with the Rework Metric.png'>
 
 <!-- IN-STOCK -->
 
@@ -72,7 +72,7 @@
 	<p class = 'subheader' > *Visible in-stock percentage of all currently working skus that have a bom type equal to “pnp”. </p>
 	<p> The unique sku count is currently x{{ unique_sku_count }}. To see the skus which are used in this metric, check out the workbook link at the top of this report, and navigate to the worksheet titled "Skus Used For In-Stock Metric". </p>
 	<p> {{ in_stock_summary_write }} </p>
-	<img class = image src = 'file:///Users/jarad/Scripts/Fake Folder/Fab/Recurring/Fab Op Report/Images/In-Stock %.png'>
+	<img class = image src = 'file:///{{ tilde }}/Scripts/Fake Folder/Fab/Recurring/Fab Op Report/Images/In-Stock %.png'>
 	<p> Note that if you compare this metric to the one found in the <a href = 'https://volcano.adafruit.com/volcano/ada_plm.php?/Reports/ZeroStock/Fab'>Zero Stock Report</a>, the two may not match. This is because the Zero Stock Report shows a snapshot while the report shows over time.</p>
 
 <!-- ELAPSED TIMES FOR WORK ORDERS -->		
