@@ -1,0 +1,1 @@
+This monthly recurring project is an audit on customer payments made with credit cards. The script reconciles payment data within the database, as well as between the database and authorize.net data taken from the website. Instructions on how to get this third-party data are at the top of the Python script.

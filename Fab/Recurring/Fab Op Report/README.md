@@ -1,0 +1,1 @@
+This recurring weekly project calculates the Fab Op Metric, a single number which shows the overall health of the Fab department.

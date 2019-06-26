@@ -1,0 +1,1 @@
+This project uses Python to pull, clean, and structure kitting and fab part data, and send it to a CSV. R is then used to import this CSV and apply several different forecasting models in order to predict unit sales.

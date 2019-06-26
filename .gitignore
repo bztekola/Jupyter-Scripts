@@ -1,0 +1,5 @@
+**/*.xslx
+**/*.pdf
+**/__pycache__
+**/*.csv
+.DS_STORE
