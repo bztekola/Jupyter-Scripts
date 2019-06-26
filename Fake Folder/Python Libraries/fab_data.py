@@ -389,6 +389,10 @@ main['products name'] = np.where(main['products name'].isnull(),
                                  main['sku id'].map(dict(zip(k['sku id'], k['sku name']))),
                                  main['products name'])    
 
+for col in ['sku id','part id']:
+    main[col] = main[col].map(int)
+
 fab_data_main = main.copy()
+
 print('\nyour df is called "fab_data_main"\n')
 print('\n== fab_data end ==\n')    
