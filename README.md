@@ -8,4 +8,4 @@ This repo contains all of my Adafruit python scripts and any docs which they gen
 
 You can see all of the .py scripts which contain the Python and R libraries/functions I use 
 frequently, along with all the data-pulls for shipping, fab, and part data. Go to 
-Fake_Folder_Copy --> Python/R_Libraries.
+Fake_Folder_Copy -> Python/R_Libraries.
