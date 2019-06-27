@@ -1,0 +1,1 @@
+This monthly recurring project is an audit of all customer payments made through Amazon. The script reonciles payment data in the database, as well as between the database and data taken from the Amazon website. Instructions on how to prepare the third-party Amazon data are at the top of the Python script.

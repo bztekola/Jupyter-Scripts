@@ -1,0 +1,1 @@
+This quarterly recurring project looks back at every past AdaBox shipment and gets data for counts, revenue, profit, shipping cost, etc. It's all-around AdaBox report.

@@ -1,0 +1,133 @@
+UPS Weekly Total Calculation
+
+Weekly total amount is the gross weekly average over the last 52 weeks that the incentive 
+contract has been active.
+Only for account 71EY05
+
+For example:
+
+Weekly amount from invoice for w/e 7/02/2016 = 164,253.37.
+Use column Z for this.
+Use spreadsheets from w/e 6/27/2016 and 6/18/2016
+
+NOTE:
+7/02 is a Sun
+6/27 is a Mon
+6/18 is a Sun
+
+From Joe's email:
+
+When looking at each file individually the best columns to utilize would be AB (Total Net) 
+and AC (Invoice Number).  The file is pulled in such a way that it provides every penny 
+spent within each account’s weekly invoicing.  The only fee which is not included in this 
+file should be the weekly pickup fee which is $12.50/week.  Taking the 7/2/16 as an example, 
+summing column AB just for account number 71EY05 I come to a total of $69,836.78; 
+this plus $12.50 gives you the total amount due for invoice number 71EY05276 = $69,849.28.
+
+Now regarding the number $164,253.37, this is your gross weekly average over the last
+52 weeks that your incentive contract has been active.  So in order to obtain a proper 
+sum as well as average, you would have to take the files provided from w/e 6/27/15 to
+w/e 6/18/16 and utilize column Z for each.  Please see the snapshot below which is
+pulled from the w/e 7/2/16 invoice for account number 71EY05; referencing the 52 
+week gross weekly average timeframe.
+
+col Z is tot_pub
+
+****************************************************************************************
+
+w/e 6/25/2016: col z sum = 137,382.91
+w/e 6/18/2016: col z sum = 151,016.87
+
+total = 288,399.78 + 12.5*2 = 288,424.78
+
+to get the weekly rolling avg total of 164,253.37, you divide the sum by 1.75 (weeks?)
+
+*****************************************************************************************
+
+
+
+
+#WEEKLY TOTAL 52 WEEK MOVING AVERAGE (working)
+
+SELECT
+invoice_date,
+SUM(basis_value)/14 #as of 11/26 it has been 14 weeks since the new contract kicked in
+FROM ups_billing
+WHERE invoice_date >= '2016-08-20'
+AND invoice_date <= '2016-11-26'
+AND account_number = '000071EY05'
+
+#output = $152,981.23
+#email from amanda = $153,509.00
+
+
+
+*****************************************************************************************
+
+regarding new incentive contract:
+
+received on 7/05/2016
+
+
+Weekly numbers will be off these next 8 weeks as you currently have a default weekly average activated with the new agreement. 
+ 
+Reason for this being that you do not lose any promised incentives for services currently utilized during the time it takes to begin moving the DHL volume with UPS.
+ 
+For the first 8 week(s) of this agreement, discounts per the schedule for eligible services will be applied based on base transportation charges per
+week of $187,451.86.
+
+
+
+*****************************************************************************************
+
+
+from amanda: received 12/21/2016
+
+Jarad,
+ 
+The current rolling average is not based on the last 52 weeks of shipping. The reason being a new bid was put in place by Joe on 7/2 with an 8 week ramp up ending 8/20. Week 8’s actual is the basis for the rolling average determination for week 9. That 9th week now becomes the new week 1 for all calculations moving forward.
+ 
+Please let me know if that helps or further clarification is needed.
+
+
+
+
+
+
+12/03/16                $157,613.39
+11/26/16                $153,509.00
+11/19/16                $153,877.39
+11/12/16                $154,195.71
+11/05/16                $154,915.09
+10/29/16                $155,256.15
+10/22/16                $156,298.08
+10/15/16                $155,322.97
+10/08/16                $154,804.85
+10/01/16                $152,198.47
+09/24/16                $153,183.27
+09/17/16                $148,163.65
+09/10/16                $143,918.33
+09/03/16                $148,726.68
+08/27/16                $160,371.59
+08/20/16                $187,451.86 (this is high as a result of the renegotiation)
+08/13/16                amount unavailable
+08/06/16                 amount unavailable
+07/30/16                amount unavailable
+07/23/16                amount unavailable
+07/16/16                amount unavailable
+07/09/16                amount unavailable
+07/02/16                amount unavailable
+06/25/16                $164,253.37
+
+
+
+
+
+
+
+
+
+
+
+
+

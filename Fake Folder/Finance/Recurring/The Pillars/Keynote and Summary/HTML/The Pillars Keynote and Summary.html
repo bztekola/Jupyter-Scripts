@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<body>
+
+    <h1> The Pillars {{ period1 }} Director's Cut <br> {{ pretty_period }} </h1>
+    <h6> Created {{ now }} </h6>
+
+<!-- PURPOSE -->
+	
+	<h2> Purpose </h2>
+	<p> The purpose of this brief report is to recap income and expenses for the current {{ period2 }}, along with any expenses which exceed their typical range, and thus should be isolated and investigated. </p>
+
+<!-- SUMMARIES -->	
+	
+	<h2> Summaries </h2>
+	<p> {{ summary1 }} </p>
+	<p> {{ summary2 }} </p>
+
+<!-- CATEGORIES IN-DEPTH -->
+
+	<h2 style = 'page-break-before: always' > Categories In-Depth </h2>
+	<p> To get a sense of whether some category's value is "normal", "low", or "high" for the given period, we can isolate each category and use historical data to construct a trendline and confidence interval, which we can then compare with the current value of that category.</p>
+
+	<p> When we do this, we produce the table below. </p>
+	<p>  {{ linear_regression_results }}  </p>
+
+<!-- END -->
+	
+	<p class = 'footer'> End of report </p>
+
+</body>
+</html>

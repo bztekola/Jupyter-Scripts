@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<body>
+
+    <h1> {{ report_title }} </h1>
+    <h6> Created {{ now }} </h6>
+
+<!-- PURPOSE -->
+
+	<h2> Purpose </h2>
+	<p> The purpose of this write-up is to report the revenue, cost, gross profit, and churn rate of AdaBox over time, with a focus on the most recent AdaBox, which for {{ pretty_year_and_quarter }} is {{ current_adabox_name }} (PN <a href = '{{ current_adabox_link }}' >{{ pn }}</a>). To see subscription counts, etc. in real time, check out <a href = 'https://volcano.adafruit.com/volcano/ada_plm.php?/Stats/Subscriptions?focus=Overview'> this </a> PLM page. </p>
+
+<!-- SUMMARY + FINANCIAL IMPACT -->
+
+	<h2> Summary + Financial Impact </h2>	
+	<p> {{ summary_write }} </p>
+
+<!-- SHIPMENT COUNTS -->
+
+	<h2> Shipment Counts </h2>		
+	<p> {{ shipment_counts_write }} Check out the chart below for shipment counts over time, along with the four-quarter average. </p>
+	<img class = 'image' src = 'file:///{{ tilde }}/Scripts/Fake Folder/Finance/Recurring/AdaBox Report/Images/AdaBox Shipment Counts with Four-quarter Average.png' >
+
+<!-- REVENUE -->
+
+	<h2> Revenue </h2>
+	<p> {{ revenue_write }} </p>
+
+<!-- COST -->
+
+	<h2> Cost </h2>
+	<p> {{ cost_write_01 }} </p>
+	<p> {{ cost_write_02 }} </p>
+
+<!-- GROSS PROFIT -->	
+
+	<h2> Gross Profit Margin </h2>
+	<p> {{ margin_write }} </p>
+	<p> The chart below shows the revenue and gross profit margin over time.</p>
+	<img class = 'image' src = 'file:///{{ tilde }}/Scripts/Fake Folder/Finance/Recurring/AdaBox Report/Images/Revenue and Gross Profit Margin.png' >
+
+<!-- CHURN RATE -->
+
+	<h2> Churn Rate </h2>
+	<p> {{ churn_write_01 }} </p>
+	<p> {{ churn_write_02 }} </p>
+	<p> {{ churn_write_03 }} </p>
+	<p> {{ churn_write_04 }}Check out the chart below for churn rates over time.</p>
+	<img class = 'image' src = 'file:///{{ tilde }}/Scripts/Fake Folder/Finance/Recurring/AdaBox Report/Images/Churn Rates per Quarter Over Time.png' >
+	<p> {{ reasons_for_churn }} Check out the chart below for more.</p>
+	<img class = 'image' src = 'file:///{{ tilde }}/Scripts/Fake Folder/Finance/Recurring/AdaBox Report/Images/Reasons for Churn.png'>
+
+<!-- END -->
+	
+<p class = 'footer'> End of report </p>
+
+</body>
+</html>
