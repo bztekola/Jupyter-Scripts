@@ -1,0 +1,1 @@
+This project calculates our UPS weekly rolling avg, which in turn decides our incentive rates, which are themselves contingent upon our most recent UPS contract structure. This project also looks at the avg shipping rates of UPS domestic and international.

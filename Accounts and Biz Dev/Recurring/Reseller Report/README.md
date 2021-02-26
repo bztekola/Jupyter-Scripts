@@ -1,0 +1,1 @@
+This recurring monthly project generates an Excel workbook showing sales, revenue, profit, and other part data for select Resellers.

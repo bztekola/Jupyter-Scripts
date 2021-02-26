@@ -1,0 +1,1 @@
+This project estimates how much the UPS 2019 rate change will affect Adafruit's shipping rates.

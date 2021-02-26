@@ -1,0 +1,1 @@
+This project looks at the sent-rate and sell-through rate of all products which offer "back in stock notifications".

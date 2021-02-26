@@ -1,0 +1,1 @@
+This project has two parts: the weekly and monthly shipping audits. The weekly audit is more concerned with recent overcharges, while the monthly audit is a more bird's-eye-view, and covers overall shipping revenue, cost, and profit.

@@ -1,0 +1,1 @@
+This project uses Python to pull, clean, and structure data from the database, and send it to a CSV file. R is then used to import this CSV file and apply several different machine learning models in order to predict fraudulent orders.

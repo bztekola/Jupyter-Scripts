@@ -1,0 +1,1 @@
+This project checks the database to make sure that any discount given to resellers and supers does not result in a negative profit margin.
