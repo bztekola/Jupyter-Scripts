@@ -228,10 +228,10 @@ def jb_conf(x):
 import pymysql
 
 config = {
-    'user' : 'reporting',
-    'password' : 'fUTFGQoKnyZqVqYFbe#iDd3ppGkJgPoNgnvD',
-	'host':'shop-aurora-production-1-us-east-1c.cda0v77r8m9l.us-east-1.rds.amazonaws.com',
-    'database' : 'adafruit_zencartnew',
+    'user' : 'username',
+    'password' : 'DBpassword',
+	'host':'hostName',
+    'database' : 'DBName',
     'port' : '3306'
 }
 
